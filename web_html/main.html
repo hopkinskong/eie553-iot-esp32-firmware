@@ -1,0 +1,93 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>EIE553 IOT Board Web Admin</title>
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
+	</head>
+	<body>
+	
+	<div class="container">
+		<center><h1>EIE553 IOT Smart Lock Web Admin</h1></center>
+		<div class="well well-lg">
+			<h2>Changing Web Admin Password</h2>
+			<form action="/modify_webadmin_password" method="POST">
+				<div class="container">
+					<label for="username"><strong>Username: </strong></label>
+					admin<br/>
+					<label for="password"><strong>New Password: </strong></label>
+					<input type="password" placeholder="New Password" name="password" required />
+					<p><strong>Note: Max length of password is 23 characters.</strong></p>
+					<p></p>
+					<button type="submit" class="btn btn-danger">Update Password</button>
+				</div>
+			</form> 
+		</div>
+		<div class="well well-lg">
+			<h2>Changing Lock Pin Code</h2>
+			<form action="/modify_lock_pin" method="POST">
+				<div class="container">
+					<label for="current_pin"><strong>Current PIN: </strong></label>
+					<span id="current_pin">Unknown</span><br/>
+					<label for="new_pin"><strong>New PIN: </strong></label>
+					<input type="text" placeholder="New Lock Pin Code" name="new_pin" required />
+					<p><strong>Note: Pin code must be 6 numeric characters.</strong></p>
+					<p></p>
+					<button type="submit" class="btn btn-danger">Update Lock PIN Code</button>
+				</div>
+			</form> 
+		</div>
+		<div class="well well-lg">
+			<h2>Reconfigure Wi-Fi</h2>
+			<form action="/modify_wifi_config" method="POST">
+				<div class="container">
+					<label for="current_ssid"><strong>Current SSID: </strong></label>
+					<span id="current_ssid">Unknown</span><br/>
+					<label for="currrent_wifi_pass"><strong>Current Wi-Fi Password: </strong></label>
+					<span id="current_wifi_pass">&lt;HIDDEN&gt;</span><br/>
+					<p><h4><strong>New Wi-Fi Config:</h4></strong></p>
+					<label for="new_ssid"><strong>SSID: </strong></label>
+					<input type="text" placeholder="Wi-Fi SSID" name="new_ssid" required /><br/>
+					<label for="new_wifi_pass"><strong>Wi-Fi Password: </strong></label>
+					<input type="password" placeholder="Wi-Fi Password" name="new_wifi_pass" />
+					<p><strong>Note: SSID and Wi-Fi Password maximum 16 characters for each field.</strong></p>
+					<p><strong>Wi-Fi Password minimum 8 characters.</strong></p>
+					<p><strong style="color: red;">Note: Wi-Fi Configurations will be applied and the device will be rebooted after you submit.</strong></p>
+					<p><strong style="color: red;">Note: If you entered a wrong Wi-Fi configuration, you may need to Hard Reset the device and configure via BLE again.</strong></p>
+					<p></p>
+					<button type="submit" class="btn btn-danger">Update Wi-Fi Details</button>
+				</div>
+			</form> 
+		</div>
+		<div class="well well-lg">
+			<h2>Current Smart Lock Status</h2>
+			<p id="status_id">ID: abcd</p>
+			<p id="status_ip">IP: abcd</p>
+			<p id="status_status">Lock Status: abcd</p>
+			<p id="status_pin">Lock Pin Code: abcd</p>
+			<p id="status_brightness">Environment Brightness: abcd</p>
+		</div>
+		<div class="well well-lg">
+			<h2>Lock Control</h2>
+			<button type="submit" class="btn btn-danger" id="btnUnlock">Force Unlock</button>
+			<button type="submit" class="btn btn-success" id="btnLock">Force Lock</button>
+		</div>
+		<div class="well well-lg">
+			<h2>Event Logs Since Last Reboot</h2>
+			<p><a class="btn btn-warning" href="/clear_logs">Clear all logs</a></p>
+			<textarea class="form-control" style="resize:none; height:500px;" id="event_logs" readonly>
+			</textarea>
+		</div>
+		<div class="well well-lg">
+			<h2>Logout</h2>
+			<a href="/logout" class="btn btn-warning btn-lg">Logout</a>
+		</div>
+	</div>
+	
+	</body>
+</html>
